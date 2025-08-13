@@ -10,10 +10,6 @@
 <!-- Coloque aqui um print/banner principal do projeto -->
 ![capa do projeto](./docs/cover.png)
 
-## 🔗 Links
-
-- 🎥 **Vídeo demo (1-2 min):** [link aqui](#)
-
 ## 🧠 Sobre o projeto
 
 Ferramenta de linha de comando para quem precisa validar ou enriquecer uma lista de endereços a partir de CEPs — por exemplo, para conferir uma base de clientes ou preparar uma planilha de entregas. Recebe um arquivo `.txt` com um CEP por linha (e/ou CEPs avulsos via linha de comando), consulta cada um na API pública [ViaCEP](https://viacep.com.br/) e gera um CSV com o resultado, incluindo CEPs inválidos ou não encontrados.
