@@ -5,10 +5,7 @@
 ![status](https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-blue)
 
-## 🖼️ Capa
-
-<!-- Coloque aqui um print/banner principal do projeto -->
-![capa do projeto](./docs/cover.png)
+> 🌱 Um dos meus primeiros projetos em Python, feito enquanto eu estudava consumo de APIs e manipulação de arquivos.
 
 ## 🧠 Sobre o projeto
 
@@ -22,12 +19,6 @@ Ferramenta de linha de comando para quem precisa validar ou enriquecer uma lista
 - Tratamento de CEP inválido, CEP não encontrado e falha de rede sem interromper o lote
 - Pausa configurável entre requisições para não sobrecarregar a API
 - Resumo final no terminal (total, sucesso, erros)
-
-## 🖥️ Prints
-
-| Execução no terminal | Relatório gerado |
-|---|---|
-| ![tela1](./docs/screenshot1.png) | ![tela2](./docs/screenshot2.png) |
 
 ## 🛠️ Tecnologias
 
