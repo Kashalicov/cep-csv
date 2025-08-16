@@ -3,7 +3,7 @@
 > Consulta uma lista de CEPs na API ViaCEP e gera um relatório em CSV com endereço completo, cidade, UF e status de cada consulta.
 
 ![status](https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen)
-![license](https://img.shields.io/badge/license-MIT-blue)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 > 🌱 Um dos meus primeiros projetos em Python, feito enquanto eu estudava consumo de APIs e manipulação de arquivos.
 
