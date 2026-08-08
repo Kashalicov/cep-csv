@@ -57,6 +57,25 @@ def test_consultar_cep_erro_rede(mock_get):
     assert resultado["status"] == "erro_rede"
 
 
+@patch("cep_report.consultar_cep")
+def test_gerar_relatorio_usa_cache_para_cep_repetido(mock_consultar, tmp_path: Path):
+    mock_consultar.return_value = {
+        "cep": "01310100", "status": "ok", "erro": "", "logradouro": "Av. Paulista",
+        "bairro": "", "localidade": "", "uf": "", "ibge": "", "ddd": "",
+    }
+    saida = tmp_path / "relatorio.csv"
+
+    erros = gerar_relatorio(["01310-100", "01310100", "01310-100"], saida)
+
+    assert erros == 0
+    assert mock_consultar.call_count == 1
+
+    with saida.open(encoding="utf-8") as f:
+        linhas = list(csv.DictReader(f))
+    assert len(linhas) == 3
+    assert all(linha["logradouro"] == "Av. Paulista" for linha in linhas)
+
+
 def test_ler_ceps_do_arquivo(tmp_path: Path):
     arquivo = tmp_path / "ceps.txt"
     arquivo.write_text("01310-100\n\n20040-020\n", encoding="utf-8")

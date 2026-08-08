@@ -17,6 +17,7 @@ Ferramenta de linha de comando para quem precisa validar ou enriquecer uma lista
 - Consulta de CEPs avulsos direto pela linha de comando (`--cep`)
 - Geração de relatório `.csv` com logradouro, bairro, cidade, UF, IBGE e DDD
 - Tratamento de CEP inválido, CEP não encontrado e falha de rede sem interromper o lote
+- Cache em memória: CEPs repetidos na mesma execução não geram nova chamada à API
 - Pausa configurável entre requisições para não sobrecarregar a API
 - Resumo final no terminal (total, sucesso, erros)
 
@@ -72,7 +73,7 @@ Esse foi o primeiro projeto do meu portfólio, focado em manter o escopo enxuto:
 
 - Suporte a exportação também em `.xlsx`
 - Barra de progresso para lotes grandes
-- Cache local para evitar reconsultar o mesmo CEP
+- Cache persistente em disco entre execuções (hoje o cache vale só para a execução atual)
 
 ## 👤 Autor
 

@@ -55,20 +55,35 @@ def ler_ceps_do_arquivo(caminho: Path) -> list[str]:
 
 def gerar_relatorio(ceps: list[str], saida: Path, pausa: float = 0.0) -> int:
     linhas_com_erro = 0
+    cache: dict[str, dict] = {}
+    consultas_evitadas = 0
 
     with saida.open("w", newline="", encoding="utf-8") as arquivo_csv:
         escritor = csv.DictWriter(arquivo_csv, fieldnames=CSV_FIELDS)
         escritor.writeheader()
 
         for i, cep in enumerate(ceps):
-            resultado = consultar_cep(cep)
+            cep_limpo = normalizar_cep(cep)
+            veio_do_cache = cep_limpo in cache
+
+            if veio_do_cache:
+                resultado = {**cache[cep_limpo], "cep": cep}
+                consultas_evitadas += 1
+            else:
+                resultado = consultar_cep(cep)
+                if resultado["status"] in ("ok", "nao_encontrado"):
+                    cache[cep_limpo] = resultado
+
             escritor.writerow(resultado)
 
             if resultado["status"] != "ok":
                 linhas_com_erro += 1
 
-            if pausa and i < len(ceps) - 1:
+            if pausa and i < len(ceps) - 1 and not veio_do_cache:
                 time.sleep(pausa)
+
+    if consultas_evitadas:
+        print(f"CEPs repetidos reaproveitados do cache: {consultas_evitadas}")
 
     return linhas_com_erro
 
